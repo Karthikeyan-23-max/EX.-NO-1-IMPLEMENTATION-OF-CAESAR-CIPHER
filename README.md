@@ -22,6 +22,7 @@ STEP-5: Display the cipher text obtained above.
 ```
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 int main() {
     char plaintext[100], encrypted[100], decrypted[100];
@@ -32,25 +33,25 @@ int main() {
 
     printf("Enter the Key value: ");
     scanf("%d", &key);
+
     for (i = 0; plaintext[i] != '\0'; i++) {
+
         if (plaintext[i] >= 'A' && plaintext[i] <= 'Z') {
-            encrypted[i] = ((plaintext[i] - 'A' + key + 26) % 26) + 'A';
+            encrypted[i] = ((plaintext[i] - 'A' + key) % 26) + 'A';
         }
         else if (plaintext[i] >= 'a' && plaintext[i] <= 'z') {
-            encrypted[i] = ((plaintext[i] - 'a' + key + 26) % 26) + 'a';
+            encrypted[i] = ((plaintext[i] - 'a' + key) % 26) + 'A'; // force uppercase
         }
         else {
             encrypted[i] = plaintext[i];
         }
     }
     encrypted[i] = '\0';
-    
+
     for (i = 0; encrypted[i] != '\0'; i++) {
+
         if (encrypted[i] >= 'A' && encrypted[i] <= 'Z') {
             decrypted[i] = ((encrypted[i] - 'A' - key + 26) % 26) + 'A';
-        }
-        else if (encrypted[i] >= 'a' && encrypted[i] <= 'z') {
-            decrypted[i] = ((encrypted[i] - 'a' - key + 26) % 26) + 'a';
         }
         else {
             decrypted[i] = encrypted[i];
@@ -65,9 +66,11 @@ int main() {
     return 0;
 }
 
+
 ```
 ## OUTPUT:
-<img width="1916" height="937" alt="image" src="https://github.com/user-attachments/assets/b5729d4c-d28e-4ff4-92eb-64be31299954" />
+<img width="1918" height="937" alt="image" src="https://github.com/user-attachments/assets/7d9537ba-e62d-49f2-940f-68bf5e54475a" />
+
 
 
 
